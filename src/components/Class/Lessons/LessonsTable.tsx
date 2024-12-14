@@ -1,4 +1,3 @@
-import { Checkbox } from '@/components/ui/checkbox'
 import {
   Table,
   TableBody,
@@ -13,7 +12,7 @@ import CreateNewLesson from './CreateNewLesson'
 
 export default function LessonsTable() {
 
-  const { data, loading, error, fetchRecords } = useGetFullList({
+  const { data, fetchRecords } = useGetFullList({
     collection: "lessons"
   })
 

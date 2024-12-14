@@ -36,7 +36,7 @@ export default function LessonsTableRow({ data, refetch }: { data: any, refetch:
   const [lessonDescription, setLessonDescription] = useState(data.description)
 
   const { toast } = useToast()
-  const { update, isLoading, error } = useUpdate("lessons")
+  const { update, } = useUpdate("lessons")
 
   async function deleteClass() {
     await pb.collection("lessons").delete(data.id)

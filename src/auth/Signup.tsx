@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignupData, useSignUp } from '../hooks/pb/useSignUp';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
@@ -14,7 +14,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showConfirmPassword, setConfirmShowPassword] = useState(false);
-  const { signup, loading, error } = useSignUp()
+  const { signup, error } = useSignUp()
   const navigate = useNavigate();
 
   const handleSubmit = async () => {

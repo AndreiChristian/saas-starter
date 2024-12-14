@@ -5,7 +5,7 @@ import CreateNewClass from "../components/Class/CreateNewClass"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export default function ClassesRoute() {
-  const { fetchRecords, data, loading, error } = useGetFullList({
+  const { fetchRecords, data, loading } = useGetFullList({
     collection: "classes"
   })
 

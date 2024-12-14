@@ -3,7 +3,6 @@ import { SidebarProvider } from "../components/ui/sidebar";
 import { DashboardSidebar } from "../components/DashboardSidebar";
 import { Toaster } from "../components/ui/toaster";
 import { useEffect } from "react";
-import countryFounder from "../utils/countryFinder";
 
 export default function DashboardLayout() {
 

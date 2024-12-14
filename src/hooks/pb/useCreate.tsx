@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PocketBase, { RecordModel } from 'pocketbase';
 import { pb } from './main';
 
 // Generic type for the record data
@@ -20,7 +19,7 @@ export function useCreate<T>(
     setError(null);
 
     try {
-      const record = await pb.collection(collectionName).create(data)
+      const record = await pb.collection(collectionName).create(data) as T
       return record;
     } catch (err) {
       setError(err instanceof Error ? err : new Error('An unknown error occurred'));

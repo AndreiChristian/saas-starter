@@ -1,5 +1,5 @@
 import { Button } from "../../components/ui/button"
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "../../components/ui/table"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table"
 import { useAuth } from "../../context/AuthContext"
 import { pb } from "../../hooks/pb/main"
 import { useGetFullList } from "../../hooks/pb/useGetFullList"

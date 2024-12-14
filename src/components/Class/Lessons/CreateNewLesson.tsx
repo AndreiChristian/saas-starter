@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function CreateNewLesson({ refetch }: { refetch: () => Promise<void> }) {
 
-  const { create, isLoading, error } = useCreate("lessons")
+  const { create } = useCreate("lessons")
   const { toast } = useToast()
 
   const [lessonName, setLessonName] = useState("")

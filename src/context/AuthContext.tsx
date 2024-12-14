@@ -16,7 +16,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   token: '',
-  login: (email: string, password: string) => { },
+  login: () => { },
   logout: () => { },
   pb: null,
 });
@@ -69,7 +69,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         email,
         password
       );
-      const o = authData.token
       setUser(authData.record)
       setToken(authData.token)
     } catch (error) {

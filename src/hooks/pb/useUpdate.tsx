@@ -19,7 +19,7 @@ export function useUpdate<T>(
     setError(null);
 
     try {
-      const record = await pb.collection(collectionName).update(recordId, data)
+      const record = await pb.collection(collectionName).update(recordId, data) as T
       return record;
     } catch (err) {
       setError(err instanceof Error ? err : new Error('An unknown error occurred'));

@@ -5,11 +5,10 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { useToast } from "../../hooks/use-toast";
-import { useGetFullList } from "../../hooks/pb/useGetFullList";
 
 export default function CreateNewClass({ refetch }: { refetch: () => Promise<void> }) {
 
-  const { create, isLoading, error } = useCreate("classes")
+  const { create } = useCreate("classes")
   const { toast } = useToast()
 
   const [newClass, setNewClass] = useState("")
