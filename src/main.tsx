@@ -12,6 +12,12 @@ import { AuthProvider } from './context/AuthContext.tsx'
 import ProfileRoute from './routes/Profile.tsx'
 import AuthWithOTP from './auth/AuthWithOTP.tsx'
 import ClassesRoute from './routes/ClassesRoute.tsx'
+import FeedBackRoute from './routes/Feedback/FeedbackRoute.tsx'
+import SurveyRoute from './routes/Feedback/SurveyRoute.tsx'
+import FeedbackIndexRoute from './routes/Feedback/Index.tsx'
+import UserSurveyListRoute from './routes/Feedback/UserSurveyListRoute.tsx'
+import BugReportRoute from './routes/Feedback/BugReportRoute.tsx'
+import IndividualClassRoute from './routes/IndividualClassRoute.tsx'
 
 const router = createBrowserRouter([
   {
@@ -39,6 +45,17 @@ const router = createBrowserRouter([
         children: [
           { path: "profile", element: <ProfileRoute /> },
           { path: "classes", element: <ClassesRoute /> },
+          { path: "classes/:classId", element: <IndividualClassRoute /> },
+          {
+            path: "feedback",
+            element: <FeedbackIndexRoute />,
+            children: [
+              { path: "", element: <FeedBackRoute /> },
+              { path: "survey", element: <SurveyRoute /> },
+              { path: "feedback-table", element: <UserSurveyListRoute /> },
+              { path: "bug-report", element: <BugReportRoute /> },
+            ]
+          },
         ]
       },
     ]

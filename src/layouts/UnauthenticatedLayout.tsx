@@ -1,13 +1,23 @@
 import { Link, Outlet } from "react-router-dom";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "../components/ui/navigation-menu";
 
 export default function UnathenticatedLayout() {
-  return <>
-    <nav style={{ width: "100%", display: "flex", flex: "row", "justifyContent": "space-between", boxSizing: "border-box", "padding": "5px", gap: "5px" }}>
-      <span>SaasStarter</span>
-      <span style={{ flex: "1" }} ></span>
-      <Link to={'/signup'} >Signup</Link>
-      <Link to={'/Login'} >Login</Link>
+  return <section className="h-screen max-h-screen box-border flex flex-col items-center justify-start" >
+    <nav className="w-full bg-bg box-border border-border border p-5 " >
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuLink>Link</NavigationMenuLink>
+              <NavigationMenuLink>Link</NavigationMenuLink>
+              <NavigationMenuLink>Link</NavigationMenuLink>
+              <NavigationMenuLink>Link</NavigationMenuLink>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
     </nav>
     <Outlet />
-  </>
+  </section>
 }

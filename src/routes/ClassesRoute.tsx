@@ -1,59 +1,40 @@
-import { useState } from "react"
 import { useGetFullList } from "../hooks/pb/useGetFullList"
-import { useCreate } from "../hooks/pb/useCreate"
-import { pb } from "../hooks/pb/main"
-import { useUpdate } from "../hooks/pb/useUpdate"
+import { Button } from "../components/ui/button"
+import { Link } from "react-router-dom"
+import CreateNewClass from "../components/Class/CreateNewClass"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function ClassesRoute() {
-
-  const [newClass, setNewClass] = useState("")
-  const [updatedClass, setUpdatedClass] = useState("")
-
   const { fetchRecords, data, loading, error } = useGetFullList({
     collection: "classes"
   })
 
-  const { create, error: createError, isLoading: createLoading } = useCreate("classes")
-  const { update } = useUpdate("classes")
-
-  async function deleteClass(id: string) {
-    try {
-      await pb.collection("classes").delete(id)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  return <>
-    <h1>Class Route</h1>
-    <div>Your classes:</div>
-    <button onClick={fetchRecords} >Refetch</button>
-    {loading && <p>Loading...</p>}
-    {error && <p>{error.message}</p>}
-    {data && <ul>
-      {data.map(c => (
-        <li key={c.id} >
-          <h3>{c.name}</h3>
-          <input
-            type="text"
-            value={updatedClass}
-            onChange={e => setUpdatedClass(e.target.value)}
-            placeholder={c.name}
-          />
-          <button onClick={() => update(c.id, { name: updatedClass })}>Update class</button>
-          <span style={{ width: "5 px" }} ></span>
-          <button onClick={() => deleteClass(c.id)} >DELETE</button>
-        </li>
-      ))}
-    </ul >}
-    <input
-      type="text"
-      value={newClass}
-      onChange={e => setNewClass(e.target.value)}
-      placeholder="New class"
-    />
-    <button onClick={() => create({ name: newClass })}>Create New class</button>
-    {createLoading && <p>Loading...</p>}
-    {createError && <p>{createError.message}</p>}
-  </>
+  return (
+    <section className="flex flex-col items-center gap-10">
+      <h1 className="text-3xl">Your Classes</h1>
+      <div className="flex gap-5 p-5 self-start w-full">
+        <CreateNewClass refetch={fetchRecords} />
+        <Button onClick={fetchRecords} className="w-1/5" variant='neutral'>
+          Refetch
+        </Button>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-5">
+        {loading
+          ? Array.from({ length: 8 }).map((_, index) => (
+            <Skeleton key={index} className="h-32 w-32" />
+          ))
+          : data?.map(c => (
+            <Link key={c.id} to={`/dashboard/classes/${c.id}`}>
+              <Button
+                className="w-full h-32 text-wrap text-xl"
+                key={c.id}
+              >
+                {c.name}
+              </Button>
+            </Link>
+          ))
+        }
+      </div>
+    </section>
+  )
 }
