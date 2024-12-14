@@ -20,7 +20,6 @@ export default function AuthWithOTP() {
   const [email, setEmail] = useState("")
   const [otp, setOtp] = useState("")
   const [otpResponse, SetOtpResponse] = useState<OTPResponse | null>(null)
-  const [isRequested, setIsRequested] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
 
@@ -29,7 +28,6 @@ export default function AuthWithOTP() {
     try {
       const req = await pb.collection('users').requestOTP(email);
       SetOtpResponse(req)
-      setIsRequested(true)
       setIsOpen(true)
     } catch (err) {
       console.log(err)
