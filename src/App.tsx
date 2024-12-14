@@ -4,6 +4,7 @@ import { pb } from './hooks/pb/main'
 function App() {
 
   async function demoCreate() {
+    console.log("Hello")
     const data = {
       name: "test"
     }
